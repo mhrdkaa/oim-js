@@ -22,9 +22,9 @@ model User {
 
 model DataSensor {
   id    Int      @id @default(autoincrement())
-  ph    Float    @db.Decimal(5, 2)
+  ph    Decimal  @db.Decimal(5, 2)
   tds   Int
-  suhu  Float    @db.Decimal(5, 2)
+  suhu  Decimal  @db.Decimal(5, 2)
   waktu DateTime @default(now()) @db.Timestamp(0)
 
   @@map("data_sensor")
