@@ -1,0 +1,47 @@
+// Prisma Schema - PostgreSQL
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  nama      String
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model DataSensor {
+  id    Int      @id @default(autoincrement())
+  ph    Float    @db.Decimal(5, 2)
+  tds   Int
+  suhu  Float    @db.Decimal(5, 2)
+  waktu DateTime @default(now()) @db.Timestamp(0)
+
+  @@map("data_sensor")
+}
+
+model Session {
+  id           String   @id
+  sessionToken String   @unique @map("session_token")
+  userId       Int      @map("user_id")
+  expires      DateTime
+
+  @@map("sessions")
+}
+
+enum Role {
+  ADMIN @map("admin")
+  USER  @map("user")
+
+  @@map("_role")
+}
