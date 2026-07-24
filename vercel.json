@@ -1,0 +1,10 @@
+{
+  "build": {
+    "env": {
+      "NEXT_PRIVATE_LOCAL_WEBPACK": "1"
+    }
+  },
+  "github": {
+    "silent": true
+  }
+}

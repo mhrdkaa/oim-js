@@ -1,32 +1,20 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { auth } from './lib/auth';
 
+// Simple middleware without auth - auth check is in layout.tsx
+// Middleware runs on Edge Runtime which doesn't support bcryptjs/prisma
 export async function middleware(request: NextRequest) {
-  const session = await auth();
   const { pathname } = request.nextUrl;
 
-  // Public routes
+  // Allow public routes
   if (pathname.startsWith('/api/sensor') || pathname === '/login' || pathname.startsWith('/api/auth')) {
     return NextResponse.next();
   }
 
-  // Protected routes - require auth
-  if (!session) {
-    const url = new URL('/login', request.url);
-    url.searchParams.set('callbackUrl', pathname);
-    return NextResponse.redirect(url);
-  }
-
-  // Admin-only routes
-  if (pathname.startsWith('/users') && session.user.role !== 'ADMIN') {
-    return NextResponse.redirect(new URL('/', request.url));
-  }
-
+  // For protected routes, let the layout.tsx handle auth check
+  // This avoids Edge Runtime issues with bcryptjs/prisma
   return NextResponse.next();
 }
-
-export const runtime = 'nodejs';
 
 export const config = {
   matcher: [
