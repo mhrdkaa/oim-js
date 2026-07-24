@@ -26,8 +26,9 @@ export async function GET(request: NextRequest) {
       status: 200,
       headers: { 'Content-Type': 'text/plain' }
     });
-  } catch (error: any) {
-    return new NextResponse(error.message || 'Validation error', { 
+  } catch (err) {
+    console.error(err);
+    return new NextResponse('Validation error', { 
       status: 400,
       headers: { 'Content-Type': 'text/plain' }
     });

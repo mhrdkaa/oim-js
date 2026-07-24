@@ -1,12 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { FaKey, FaArrowLeft, FaShieldAlt } from 'react-icons/fa';
 
 export default function GantiPasswordPage() {
-  const router = useRouter();
   const [form, setForm] = useState({
     password_lama: '',
     password_baru: '',
@@ -58,8 +56,9 @@ export default function GantiPasswordPage() {
       });
       
       setTimeout(() => setSuccess(''), 3000);
-    } catch (err: any) {
-      setError(err.message || 'Gagal mengubah password');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Gagal mengubah password';
+      setError(message);
     } finally {
       setLoading(false);
     }

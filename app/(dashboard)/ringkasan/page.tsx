@@ -25,9 +25,9 @@ export default function RingkasanPage() {
       .then((res) => res.json())
       .then((data) => {
         if (data.length > 0) {
-          const phValues = data.map((d: any) => d.ph);
-          const tdsValues = data.map((d: any) => d.tds);
-          const suhuValues = data.map((d: any) => d.suhu);
+          const phValues = data.map((d: { ph: number }) => d.ph);
+          const tdsValues = data.map((d: { tds: number }) => d.tds);
+          const suhuValues = data.map((d: { suhu: number }) => d.suhu);
 
           setStats({
             avg_ph: phValues.reduce((a: number, b: number) => a + b, 0) / phValues.length,

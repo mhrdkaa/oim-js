@@ -1,17 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { FaUser, FaSave, FaArrowLeft } from 'react-icons/fa';
 
 export default function ProfilPage() {
-  const router = useRouter();
   const { data: session, update } = useSession();
   const [nama, setNama] = useState(session?.user?.name || '');
-  const [username, setUsername] = useState(session?.user?.email || '');
-  const [role, setRole] = useState(session?.user?.role || '');
+  const [username] = useState(session?.user?.email || '');
+  const [role] = useState(session?.user?.role || '');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
@@ -46,8 +44,9 @@ export default function ProfilPage() {
 
       setSuccess('Profil berhasil diperbarui');
       setTimeout(() => setSuccess(''), 3000);
-    } catch (err: any) {
-      setError(err.message || 'Gagal memperbarui profil');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Gagal memperbarui profil';
+      setError(message);
     } finally {
       setLoading(false);
     }

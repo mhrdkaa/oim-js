@@ -19,7 +19,7 @@ export async function GET() {
     }));
 
     return NextResponse.json(reversed);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch chart data' }, { status: 500 });
   }
 }

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { changePasswordSchema } from '@/lib/validations';
+import { ZodError } from 'zod';
 import bcrypt from 'bcryptjs';
 
 // Change user password
@@ -43,10 +44,11 @@ export async function PUT(request: NextRequest) {
     });
 
     return NextResponse.json({ message: 'Password berhasil diubah' });
-  } catch (error: any) {
-    if (error.name === 'ZodError') {
+  } catch (error) {
+    if (error instanceof ZodError) {
       return new NextResponse(error.errors[0]?.message || 'Validation error', { status: 400 });
     }
-    return new NextResponse(error.message || 'Failed to change password', { status: 500 });
+    const message = error instanceof Error ? error.message : 'Failed to change password';
+    return new NextResponse(message, { status: 500 });
   }
 }

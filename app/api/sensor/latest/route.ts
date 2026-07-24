@@ -25,7 +25,7 @@ export async function GET() {
       suhu: Number(data.suhu),
       waktu: data.waktu,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });
   }
 }

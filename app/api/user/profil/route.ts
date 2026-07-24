@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { updateProfilSchema } from '@/lib/validations';
+import { ZodError } from 'zod';
 
 // Update user profile
 export async function PUT(request: NextRequest) {
@@ -12,7 +13,7 @@ export async function PUT(request: NextRequest) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    const body = await request.json();
+    const body: unknown = await request.json();
     
     // Validate with Zod
     const validated = updateProfilSchema.parse(body);
@@ -31,11 +32,12 @@ export async function PUT(request: NextRequest) {
       username: user.username,
       role: user.role,
     });
-  } catch (error: any) {
-    if (error.name === 'ZodError') {
+  } catch (error) {
+    if (error instanceof ZodError) {
       return new NextResponse(error.errors[0]?.message || 'Validation error', { status: 400 });
     }
-    return new NextResponse(error.message || 'Failed to update profile', { status: 500 });
+    const message = error instanceof Error ? error.message : 'Failed to update profile';
+    return new NextResponse(message, { status: 500 });
   }
 }
 
@@ -64,7 +66,8 @@ export async function GET() {
     }
 
     return NextResponse.json(user);
-  } catch (error: any) {
-    return new NextResponse(error.message || 'Failed to fetch profile', { status: 500 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Failed to fetch profile';
+    return new NextResponse(message, { status: 500 });
   }
 }
