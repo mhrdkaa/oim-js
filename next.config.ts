@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [],
   },
+  // Disable Edge Runtime untuk compatibility dengan bcryptjs/prisma
+  runtime: 'nodejs',
 };
 
 export default nextConfig;

@@ -26,6 +26,8 @@ export async function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
+export const runtime = 'nodejs';
+
 export const config = {
   matcher: [
     /*
