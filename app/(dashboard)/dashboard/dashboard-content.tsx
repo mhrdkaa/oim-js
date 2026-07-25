@@ -14,7 +14,7 @@ interface SensorData {
   waktu: string;
 }
 
-export default function DashboardPage() {
+export default function DashboardContent() {
   const [latestData, setLatestData] = useState<SensorData | null>(null);
   const [chartData, setChartData] = useState<SensorData[]>([]);
 
@@ -107,13 +107,11 @@ export default function DashboardPage() {
 
   return (
     <div className="p-6 space-y-6">
-      {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-800">Dashboard Monitoring Realtime</h1>
         <p className="text-gray-600">Mesin Wasino SE-52N2 - Update otomatis setiap 3 detik</p>
       </div>
 
-      {/* Metric Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-blue-500 text-white rounded-lg shadow-lg p-6 hover:scale-105 transition-transform">
           <div className="flex items-center justify-between">
@@ -156,7 +154,6 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Charts */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white rounded-lg shadow-lg p-4">
           <h3 className="text-lg font-semibold text-gray-700 mb-4">📈 Grafik pH</h3>
@@ -180,7 +177,6 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Status System & Export */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
           <h3 className="text-lg font-semibold text-gray-700 mb-4">ℹ️ Status Sistem</h3>
@@ -225,9 +221,7 @@ export default function DashboardPage() {
               <tr>
                 <td className="py-3 font-medium text-gray-700">Kondisi Sensor</td>
                 <td className="py-3">
-                  <span className="px-3 py-1 rounded-full bg-green-500 text-white text-sm">
-                    Online
-                  </span>
+                  <span className="px-3 py-1 rounded-full bg-green-500 text-white text-sm">Online</span>
                 </td>
               </tr>
             </tbody>
