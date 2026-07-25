@@ -17,6 +17,28 @@ interface SensorData {
 export default function DashboardContent() {
   const [latestData, setLatestData] = useState<SensorData | null>(null);
   const [chartData, setChartData] = useState<SensorData[]>([]);
+  const [exporting, setExporting] = useState(false);
+
+  const handleExportExcel = async () => {
+    setExporting(true);
+    try {
+      const res = await fetch('/api/export/excel');
+      if (!res.ok) throw new Error('Export gagal');
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = res.headers.get('Content-Disposition')?.match(/filename="(.+)"/)?.[1] || 'data-sensor.xlsx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch {
+      alert('Export gagal, coba lagi');
+    } finally {
+      setExporting(false);
+    }
+  };
 
   const loadData = async () => {
     try {
@@ -229,12 +251,13 @@ export default function DashboardContent() {
         </div>
 
         <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">💾 Export Data</h3>
+          <h3 className="text-lg font-semibold text-gray-700 mb-4">Export Data</h3>
           <button
-            onClick={() => alert('Export Excel akan ditambahkan')}
-            className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            onClick={handleExportExcel}
+            disabled={exporting}
+            className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            📥 Export ke Excel
+            {exporting ? 'Exporting...' : 'Export ke Excel'}
           </button>
           <p className="text-gray-500 text-sm mt-2">Export 50 data terakhir</p>
         </div>
