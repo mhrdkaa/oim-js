@@ -78,9 +78,9 @@ export default function DashboardContent() {
   };
 
   const getStatusSuhu = (suhu: number) => {
-    if (suhu >= 25 && suhu <= 30) return { text: 'Normal', color: 'bg-green-500' };
-    if (suhu > 30 && suhu <= 35) return { text: 'Tinggi', color: 'bg-yellow-500' };
-    if (suhu < 25 && suhu >= 20) return { text: 'Rendah', color: 'bg-yellow-500' };
+    if (suhu >= 30 && suhu <= 35) return { text: 'Normal', color: 'bg-green-500' };
+    if (suhu > 35 && suhu <= 40) return { text: 'Tinggi', color: 'bg-yellow-500' };
+    if (suhu >= 20 && suhu < 30) return { text: 'Sangat Baik', color: 'bg-yellow-500' };
     return { text: 'Bahaya', color: 'bg-red-500' };
   };
 
