@@ -201,7 +201,8 @@ export default function DashboardContent() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">ℹ️ Status Sistem</h3>
+          <h3 className="text-lg font-semibold text-gray-700 mb-4">Status Sistem</h3>
+          <h3 className="text-md font-semibold text-gray-700 mb-4">Buzzer akan nyala ketika pH lebih dari 8.5 dan kurang dari 6.5</h3>
           <table className="w-full">
             <tbody>
               <tr className="border-b">
