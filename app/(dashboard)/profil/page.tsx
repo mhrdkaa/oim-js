@@ -32,7 +32,7 @@ export default function ProfilPage() {
       }
 
       const data = await res.json();
-      
+
       // Update session
       await update({
         ...session,
@@ -53,28 +53,28 @@ export default function ProfilPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-800">Profil User</h1>
-        <p className="text-gray-600">Kelola informasi profil akun Anda</p>
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Profil User</h1>
+        <p className="text-sm md:text-base text-gray-600">Kelola informasi profil akun Anda</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
         {/* Form Section */}
-        <div className="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+        <div className="lg:col-span-2 bg-white rounded-lg shadow-lg p-4 md:p-6">
+          <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-4 flex items-center">
             <FaUser className="mr-2 text-blue-600" /> Informasi Akun
           </h3>
 
           {success && (
-            <div className="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg">
+            <div className="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg text-sm md:text-base">
               {success}
             </div>
           )}
 
           {error && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm md:text-base">
               {error}
             </div>
           )}
@@ -82,40 +82,40 @@ export default function ProfilPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                   Username
                 </label>
                 <input
                   type="text"
                   value={username}
                   disabled
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-600"
+                  className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-600 text-sm md:text-base"
                 />
                 <p className="text-xs text-gray-500 mt-1">Username tidak dapat diubah</p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                   Role
                 </label>
                 <input
                   type="text"
                   value={role}
                   disabled
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-600"
+                  className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-600 text-sm md:text-base"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                 Nama Lengkap
               </label>
               <input
                 type="text"
                 value={nama}
                 onChange={(e) => setNama(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm md:text-base"
                 placeholder="Masukkan nama lengkap"
                 required
               />
@@ -126,7 +126,7 @@ export default function ProfilPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center space-x-2 disabled:opacity-50"
+                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 disabled:opacity-50 text-sm md:text-base"
               >
                 <FaSave />
                 <span>{loading ? 'Menyimpan...' : 'Simpan Perubahan'}</span>
@@ -136,24 +136,24 @@ export default function ProfilPage() {
         </div>
 
         {/* Info Card */}
-        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-lg shadow-lg p-6">
-          <h3 className="text-lg font-semibold mb-4">Tips Keamanan</h3>
+        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-lg shadow-lg p-4 md:p-6">
+          <h3 className="text-base md:text-lg font-semibold mb-4">Tips Keamanan</h3>
           <ul className="space-y-3">
             <li className="flex items-start">
               <span className="mr-2">•</span>
-              <p className="text-sm text-blue-100">Username dan role tidak dapat diubah untuk keamanan</p>
+              <p className="text-xs md:text-sm text-blue-100">Username dan role tidak dapat diubah untuk keamanan</p>
             </li>
             <li className="flex items-start">
               <span className="mr-2">•</span>
-              <p className="text-sm text-blue-100">Pastikan nama Anda terdaftar dengan benar</p>
+              <p className="text-xs md:text-sm text-blue-100">Pastikan nama Anda terdaftar dengan benar</p>
             </li>
             <li className="flex items-start">
               <span className="mr-2">•</span>
-              <p className="text-sm text-blue-100">Gunakan password yang kuat dan rutin ganti password</p>
+              <p className="text-xs md:text-sm text-blue-100">Gunakan password yang kuat dan rutin ganti password</p>
             </li>
             <li className="flex items-start">
               <span className="mr-2">•</span>
-              <p className="text-sm text-blue-100">Hubungi admin jika perlu perubahan akun</p>
+              <p className="text-xs md:text-sm text-blue-100">Hubungi admin jika perlu perubahan akun</p>
             </li>
           </ul>
         </div>
@@ -163,7 +163,7 @@ export default function ProfilPage() {
       <div className="pt-4">
         <Link
           href="/dashboard"
-          className="inline-flex items-center px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors"
+          className="inline-flex items-center px-3 md:px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors text-sm md:text-base"
         >
           <FaArrowLeft className="mr-2" />
           Kembali ke Dashboard

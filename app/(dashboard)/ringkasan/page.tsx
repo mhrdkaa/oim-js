@@ -46,93 +46,93 @@ export default function RingkasanPage() {
   }, []);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-800">Ringkasan Statistik</h1>
-        <p className="text-gray-600">Statistik keseluruhan data sensor (50 data terakhir)</p>
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Ringkasan Statistik</h1>
+        <p className="text-sm md:text-base text-gray-600">Statistik keseluruhan data sensor (50 data terakhir)</p>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-blue-500 text-white rounded-lg shadow-lg p-6">
-          <p className="text-blue-100 text-sm">Rata-rata pH</p>
-          <h3 className="text-4xl font-bold mt-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+        <div className="bg-blue-500 text-white rounded-lg shadow-lg p-4 md:p-6">
+          <p className="text-blue-100 text-xs md:text-sm">Rata-rata pH</p>
+          <h3 className="text-3xl md:text-4xl font-bold mt-2">
             {stats?.avg_ph.toFixed(2) || '-'}
           </h3>
         </div>
 
-        <div className="bg-green-500 text-white rounded-lg shadow-lg p-6">
-          <p className="text-green-100 text-sm">Rata-rata TDS (ppm)</p>
-          <h3 className="text-4xl font-bold mt-2">
+        <div className="bg-green-500 text-white rounded-lg shadow-lg p-4 md:p-6">
+          <p className="text-green-100 text-xs md:text-sm">Rata-rata TDS (ppm)</p>
+          <h3 className="text-3xl md:text-4xl font-bold mt-2">
             {stats?.avg_tds.toFixed(0) || '-'}
           </h3>
         </div>
 
-        <div className="bg-orange-500 text-white rounded-lg shadow-lg p-6">
-          <p className="text-orange-100 text-sm">Rata-rata Suhu (°C)</p>
-          <h3 className="text-4xl font-bold mt-2">
+        <div className="bg-orange-500 text-white rounded-lg shadow-lg p-4 md:p-6 sm:col-span-2 lg:col-span-1">
+          <p className="text-orange-100 text-xs md:text-sm">Rata-rata Suhu (°C)</p>
+          <h3 className="text-3xl md:text-4xl font-bold mt-2">
             {stats?.avg_suhu.toFixed(2) || '-'}°C
           </h3>
         </div>
       </div>
 
       {/* Detail Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">Statistik pH</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4">
+        <div className="bg-white rounded-lg shadow-lg p-4 md:p-6">
+          <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-4">Statistik pH</h3>
           <table className="w-full">
             <tbody>
               <tr className="border-b">
-                <td className="py-2 text-gray-600">Rata-rata</td>
-                <td className="py-2 font-semibold">{stats?.avg_ph.toFixed(2) || '-'}</td>
+                <td className="py-2 text-gray-600 text-sm md:text-base">Rata-rata</td>
+                <td className="py-2 font-semibold text-sm md:text-base">{stats?.avg_ph.toFixed(2) || '-'}</td>
               </tr>
               <tr className="border-b">
-                <td className="py-2 text-gray-600">Minimum</td>
-                <td className="py-2 font-semibold">{stats?.min_ph.toFixed(2) || '-'}</td>
+                <td className="py-2 text-gray-600 text-sm md:text-base">Minimum</td>
+                <td className="py-2 font-semibold text-sm md:text-base">{stats?.min_ph.toFixed(2) || '-'}</td>
               </tr>
               <tr>
-                <td className="py-2 text-gray-600">Maximum</td>
-                <td className="py-2 font-semibold">{stats?.max_ph.toFixed(2) || '-'}</td>
+                <td className="py-2 text-gray-600 text-sm md:text-base">Maximum</td>
+                <td className="py-2 font-semibold text-sm md:text-base">{stats?.max_ph.toFixed(2) || '-'}</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">Statistik TDS</h3>
+        <div className="bg-white rounded-lg shadow-lg p-4 md:p-6">
+          <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-4">Statistik TDS</h3>
           <table className="w-full">
             <tbody>
               <tr className="border-b">
-                <td className="py-2 text-gray-600">Rata-rata</td>
-                <td className="py-2 font-semibold">{stats?.avg_tds.toFixed(0) || '-'} ppm</td>
+                <td className="py-2 text-gray-600 text-sm md:text-base">Rata-rata</td>
+                <td className="py-2 font-semibold text-sm md:text-base">{stats?.avg_tds.toFixed(0) || '-'} ppm</td>
               </tr>
               <tr className="border-b">
-                <td className="py-2 text-gray-600">Minimum</td>
-                <td className="py-2 font-semibold">{stats?.min_tds || '-'} ppm</td>
+                <td className="py-2 text-gray-600 text-sm md:text-base">Minimum</td>
+                <td className="py-2 font-semibold text-sm md:text-base">{stats?.min_tds || '-'} ppm</td>
               </tr>
               <tr>
-                <td className="py-2 text-gray-600">Maximum</td>
-                <td className="py-2 font-semibold">{stats?.max_tds || '-'} ppm</td>
+                <td className="py-2 text-gray-600 text-sm md:text-base">Maximum</td>
+                <td className="py-2 font-semibold text-sm md:text-base">{stats?.max_tds || '-'} ppm</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">Statistik Suhu</h3>
+        <div className="bg-white rounded-lg shadow-lg p-4 md:p-6">
+          <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-4">Statistik Suhu</h3>
           <table className="w-full">
             <tbody>
               <tr className="border-b">
-                <td className="py-2 text-gray-600">Rata-rata</td>
-                <td className="py-2 font-semibold">{stats?.avg_suhu.toFixed(2) || '-'}°C</td>
+                <td className="py-2 text-gray-600 text-sm md:text-base">Rata-rata</td>
+                <td className="py-2 font-semibold text-sm md:text-base">{stats?.avg_suhu.toFixed(2) || '-'}°C</td>
               </tr>
               <tr className="border-b">
-                <td className="py-2 text-gray-600">Minimum</td>
-                <td className="py-2 font-semibold">{stats?.min_suhu.toFixed(2) || '-'}°C</td>
+                <td className="py-2 text-gray-600 text-sm md:text-base">Minimum</td>
+                <td className="py-2 font-semibold text-sm md:text-base">{stats?.min_suhu.toFixed(2) || '-'}°C</td>
               </tr>
               <tr>
-                <td className="py-2 text-gray-600">Maximum</td>
-                <td className="py-2 font-semibold">{stats?.max_suhu.toFixed(2) || '-'}°C</td>
+                <td className="py-2 text-gray-600 text-sm md:text-base">Maximum</td>
+                <td className="py-2 font-semibold text-sm md:text-base">{stats?.max_suhu.toFixed(2) || '-'}°C</td>
               </tr>
             </tbody>
           </table>
@@ -140,9 +140,9 @@ export default function RingkasanPage() {
       </div>
 
       {/* Info */}
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-700 mb-4">Informasi Umum</h3>
-        <div className="space-y-2 text-gray-600">
+      <div className="bg-white rounded-lg shadow-lg p-4 md:p-6">
+        <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-4">Informasi Umum</h3>
+        <div className="space-y-2 text-gray-600 text-sm md:text-base">
           <p><strong>Total Data:</strong> {stats?.total || 0} record (dari 50 data terakhir)</p>
           <p><strong>Sistem:</strong> Monitoring Air Coolant Mesin Wasino SE-52N2</p>
           <p><strong>Update:</strong> Realtime setiap 3 detik</p>
@@ -151,7 +151,7 @@ export default function RingkasanPage() {
 
       <Link
         href="/dashboard"
-        className="inline-flex items-center px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors"
+        className="inline-flex items-center px-3 md:px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors text-sm md:text-base"
       >
         ← Kembali
       </Link>
