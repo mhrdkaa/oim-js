@@ -38,9 +38,9 @@ export default function Sidebar({ user, isOpen, onClose }: SidebarProps) {
     { href: '/ganti-password', label: 'Ganti Password', icon: FaKey },
   ];
 
-  const adminLinks = [
-    { href: '/users', label: 'Kelola User', icon: FaUsers },
-  ];
+  // const adminLinks = [
+  //   { href: '/users', label: 'Kelola User', icon: FaUsers },
+  // ];
 
   return (
     <>
@@ -119,7 +119,7 @@ export default function Sidebar({ user, isOpen, onClose }: SidebarProps) {
               );
             })}
 
-            {user.role === 'ADMIN' && (
+            {/* {user.role === 'ADMIN' && (
               <>
                 <div className="pt-4 pb-2 px-4">
                   <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
@@ -144,7 +144,7 @@ export default function Sidebar({ user, isOpen, onClose }: SidebarProps) {
                   );
                 })}
               </>
-            )}
+            )} */}
           </div>
         </nav>
 
