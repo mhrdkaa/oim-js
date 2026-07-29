@@ -64,11 +64,10 @@ export default function DashboardContent() {
   }, []);
 
   const getStatusPH = (ph: number) => {
+    
     if (ph > 6.5 && ph < 8.5) return { text: 'Normal', color: 'bg-green-500' };
-    if (ph >= 8.5 && ph <= 10.0) return { text: 'Tinggi', color: 'bg-yellow-500' };
-    if (ph <= 6.5 && ph >= 6.0) return { text: 'Rendah', color: 'bg-yellow-500' };
     return { text: 'Bahaya', color: 'bg-red-500' };
-  };
+};
 
   const getStatusTDS = (tds: number) => {
     if (tds >= 0 && tds <= 1000) return { text: 'Normal', color: 'bg-green-500' };
