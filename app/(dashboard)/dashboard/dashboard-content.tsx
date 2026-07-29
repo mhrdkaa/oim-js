@@ -71,11 +71,10 @@ export default function DashboardContent() {
   };
 
   const getStatusTDS = (tds: number) => {
-    if (tds >= 1000 && tds <= 0) return { text: 'Normal', color: 'bg-green-500' };
-    if (tds > 5000 && tds <= 1000) return { text: 'Tinggi', color: 'bg-yellow-500' };
-    // if (tds >= 500 && tds <= 1500) return { text: 'Rendah', color: 'bg-yellow-500' };
-    return { text: 'Bahaya', color: 'bg-red-500' };
-  };
+    if (tds >= 0 && tds <= 1000) return { text: 'Normal', color: 'bg-green-500' };
+    if (tds > 1000 && tds <= 5000) return { text: 'Bahaya', color: 'bg-red-500' };
+    // return { text: 'Bahaya', color: 'bg-red-500' };
+};
 
   const getStatusSuhu = (suhu: number) => {
     if (suhu >= 30 && suhu <= 35) return { text: 'Normal', color: 'bg-green-500' };
